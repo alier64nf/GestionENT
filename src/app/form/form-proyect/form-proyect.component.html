@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h4 class="modal-title">Defina su Proyecto</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+  <label for="name">Name</label>
+  <input type="text" class="form-control ng-untouched ng-pristine ng-valid" id="name" name="name">
+</div>
+
+<div class="form-group">
+  <label for="descripcion">Breve Descripcion</label>
+  <input type="text"  class="form-control ng-untouched ng-pristine ng-valid" id="alterEgo" name="alterEgo">
+</div>
+
+<div class="form-group">
+  <label for="timpodesarrollo">Tiempo de Desarrollo</label><br>
+  <span>Desde</span>
+  <input type="date"  class="form-control ng-untouched ng-pristine ng-valid" id="TiempoI_Desarrollo" name="TiempoI_Desarrollo">
+  <span>Hasta</span>
+  <input type="date"  class="form-control ng-untouched ng-pristine ng-valid" id="TiempoF_Desarrollo" name="TiempoF_Desarrollo">
+</div>
+
+<div class="form-group">
+  <span class="">$</span>
+  <label for="precio">Precio</label>
+  <input type="currency"  class="form-control ng-untouched ng-pristine ng-valid" id="precio" name="precio">
+</div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

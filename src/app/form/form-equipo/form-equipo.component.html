@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <h4 class="modal-title">Crea tu Equipo</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon2">Id</span>
+    <input type="text" class="form-control" placeholder="Identificador de Equipo" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  </div>
+  <div class="d-grid gap-2">
+    <button class="btn btn-primary" type="button" (click)="OpenListProgamdrs()">Seleccionar Programadores</button>
+    <p>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="collapse.toggle()"
+        [attr.aria-expanded]="!isCollapsed"
+        aria-controls="collapseExample"
+      >
+      Programadores Selecionados
+      </button>
+
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="card">
+        <div class="card-body">
+          <ul>
+            <li *ngFor="let programador of Progs_Selects">
+              <span>{{programador}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div>
+    <select  class="form-select" aria-label="Default select example">
+      <option selected>Selecciona un Lider</option>
+      <option *ngFor="let lider of lideres">
+       <span> {{lider.name}} </span><br>
+       <span> <b>Experiencia:</b> {{lider.anioxp}} </span>
+       <span> <b>Proyectos:</b> {{lider.proyectDirigidos}}</span>
+      </option>
+    </select>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
