@@ -24,7 +24,7 @@
       <div class="card">
         <div class="card-body">
           <ul>
-            <li *ngFor="let programador of Progs_Selects">
+            <li **ngFor="let programador of Progs_Selects">
               <span>{{programador}}</span>
             </li>
           </ul>
@@ -36,7 +36,7 @@
   <div>
     <select  class="form-select" aria-label="Default select example">
       <option selected>Selecciona un Lider</option>
-      <option *ngFor="let lider of lideres">
+      <option **ngFor="let lider of lideres">
        <span> {{lider.name}} </span><br>
        <span> <b>Experiencia:</b> {{lider.anioxp}} </span>
        <span> <b>Proyectos:</b> {{lider.proyectDirigidos}}</span>

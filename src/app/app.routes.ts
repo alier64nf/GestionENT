@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { EmployerTabComponent } from './employer-tab/employer-tab.component';
+import { EmployerTableComponent } from './employer-tab/employer-tab.component';
 
 export const routes: Routes = [
 
@@ -11,7 +11,7 @@ export const routes: Routes = [
   },
   {
     path: 'empleados',
-    component: EmployerTabComponent,
+    component: EmployerTableComponent,
     title: 'Dashboard'
   }
 

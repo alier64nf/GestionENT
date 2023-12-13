@@ -1,8 +1,8 @@
 import { Programador } from '../../IEmployer/IProgramador';
 import { Component, inject, Input, Output } from '@angular/core';
-import { PROGRAMADORES } from '../../Programadores';
 import { EmpleadosService } from '../../empleados.service';
-import { Lider } from '../../IEmployer/ILider';
+import { CommonModule, NgFor } from '@angular/common';
+
 import {
     NgbModal,
     NgbActiveModal,
@@ -16,9 +16,6 @@ import {
   NgbCollapseConfig,
   NgbPaginationModule,
   NgbHighlight} from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule, NgFor } from '@angular/common';
-
-
 
 
 @Component({
@@ -72,15 +69,11 @@ activeModal2 = inject(NgbActiveModal);
 
 }
 
-
-
-
-
-
 @Component({
   selector: 'content-form-equipo',
   standalone: true,
-  imports:[CommonModule,
+  imports:[
+    CommonModule,
     NgbModalModule,
     NgbAccordionModule,
     NgbAccordionBody,
@@ -95,7 +88,7 @@ export class FormEquipoContent {
   isCollapsed = true;
   empleados= inject(EmpleadosService);
   Programadores=this.empleados.getProgramadorList();
-  lideres=this.empleados.getLiderList();
+  lideres=this.empleados.getProgramadorList();
   Progs_Selects?: Programador[];
 
   private modalService2 = inject(NgbModal);

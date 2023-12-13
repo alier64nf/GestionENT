@@ -3,10 +3,10 @@ import { Programador } from './IEmployer/IProgramador';
 export const PROGRAMADORES: Programador[]= [
   {
     name:"Hammer Town Shield",
-    edad:25,
+    edad:24,
     sexo:'M',
     SalarioBasic: 450,
-    CI:'98012323456',
+    CI:'93012323456',
     lenguajes_programacion:['Angular','React','TypeScript','Tailwind'],
     categoria: 'Frontend',
 
@@ -20,7 +20,24 @@ export const PROGRAMADORES: Programador[]= [
     CI:'98012323456',
     lenguajes_programacion:['Angular','React','TypeScript','Tailwind'],
     categoria: 'Frontend',
+  },
+ {
+  name:"Maxwell Mach Serfas",
+  edad:25,
+  sexo:'M',
+  SalarioBasic: 799,
+  CI:'98122323456',
+  lenguajes_programacion:['Nodejs','Pyhton','MongoDB','AWS'],
+  categoria: 'Backend',
+},
+{
+  name:"Jesee Thric Manir",
+  edad:23,
+  sexo:'f',
+  SalarioBasic: 799,
+  CI:'93122323456',
+  lenguajes_programacion:['Sql','Pyhton','MongoDB','AWS'],
+  categoria: 'Backend',
+},
 
-
-
-  }]
+]

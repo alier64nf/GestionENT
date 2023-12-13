@@ -1,8 +1,9 @@
 export interface Employer {
-   name:String;
+   name:string;
    edad:number;
    sexo:string;
    SalarioBasic: number;
    CI:string;
-
 }
+
+

@@ -1,1 +1,65 @@
-<p>employer-tab works!</p>
+
+
+<form>
+	<div class="mb-3 row">
+		<label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+		<div class="col-xs-3 col-sm-auto">
+			<input
+				id="table-complete-search"
+				type="text"
+				class="form-control"
+				name="searchterm"
+				[(ngModel)]="service.searchTerm"
+			/>
+		</div>
+	</div>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+        <th scope="col">CI</th>
+				<th scope="col"  sortable="name" (sort)="onSort($event)">Name</th>
+				<th scope="col" sortable="name" (sort)="onSort($event) ">Salario</th>
+				<th scope="col"  sortable="name" (sort)="onSort($event)">Lenguajes que Domina</th>
+        <th scope="col"  sortable="name" (sort)="onSort($event)">Categoria</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			@for (empleado of empleados | async;track total$) {
+				<tr>
+					<th scope="row">{{ empleado.CI}}</th>
+					<td>
+						<ngb-highlight [result]="empleado.name" [term]="empleado.name" />
+					</td>
+					<td>
+            <span>$</span>
+            <ngb-highlight [result]="empleado.SalarioBasic| number" [term]="service.searchTerm" /></td>
+
+          <td *ngIf="empleado as Programador;" >
+            <ngb-highlight [result]="empleado.lenguajes_programacion" [term]="service.searchTerm" />
+          </td>
+          <td>
+            <ngb-highlight [result]="empleado.categoria" [term]="service.searchTerm" />
+          </td>
+
+				</tr>
+			} @empty {
+				<tr>
+					<td colspan="4" style="text-align: center">Programadores no Encontrados</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+	<div class="d-flex justify-content-between p-2">
+		<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+		</ngb-pagination>
+
+		<select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+			<option [ngValue]="2">2 items per page</option>
+			<option [ngValue]="4">4 items per page</option>
+			<option [ngValue]="6">6 items per page</option>
+		</select>
+	</div>
+</form>

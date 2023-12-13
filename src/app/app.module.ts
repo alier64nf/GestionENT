@@ -40,6 +40,7 @@ import { FormProyectComponent } from './form/form-proyect/form-proyect.component
   ],
 
   providers:[
+    EmpleadosService,
   ],
   bootstrap:[]
 })
