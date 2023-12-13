@@ -1,8 +1,10 @@
-import { Injectable, inject, PipeTransform } from '@angular/core';
+import { Empresa } from './Class/Empresa';
+import { provideRouter } from '@angular/router';
+import { Injectable, inject, PipeTransform, Inject } from '@angular/core';
 // import { Employer } from './Class/Employer/ClassEmployer';
 // import { Lider } from './Class/Employer/ClassLider';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, UpperCasePipe } from '@angular/common';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 import { SortColumn, SortDirection } from './sortable.directive';
 // import { EMPLEADOS } from './Empresa';
@@ -10,9 +12,11 @@ import { SortColumn, SortDirection } from './sortable.directive';
 
 import {PROGRAMADORES} from "./Programadores";
 import { Programador } from './IEmployer/IProgramador';
+import { LIDERES } from './lideres';
+import { Employer } from './IEmployer/IEmployer';
 
 interface SearchResult {
-	empleados: Programador[];
+	empleados: Employer[];
 	total: number;
 }
 
@@ -26,7 +30,7 @@ interface State {
 
 const compare = (v1: string| number |string [], v2: string | number | string[]) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
-function sort(empleados: Programador[], column: SortColumn, direction: string): Programador[] {
+function sort(empleados: Employer[], column: SortColumn, direction: string): Employer[] {
 	if (direction === '' || column === '') {
 		return empleados;
 	} else {
@@ -36,17 +40,20 @@ function sort(empleados: Programador[], column: SortColumn, direction: string): 
 		});
 	}
 }
-function matches(empleado: any, term: String, pipe: PipeTransform) {
+function matches(empleado: Employer, term: String, pipe: PipeTransform) {
 	return (
-		empleado.name.toLowerCase().includes(term.toLowerCase()) ||
-		pipe.transform(empleado.name.includes(term)));
+		empleado.name.toLowerCase().includes(term.toLowerCase()) //||
+		// pipe.transform(empleado.name.includes(term))
+    );
 }
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class EmpleadosService {
-  private EmpleadosList= new BehaviorSubject<Programador[]>([]);
+  private _Empresa;
+  private EmpleadosList= new BehaviorSubject<Employer[]>([]);
   private _loading$ = new BehaviorSubject<boolean>(true);
 	private _search$ = new Subject<void>();
 	private _total$ = new BehaviorSubject<number>(0);
@@ -59,8 +66,7 @@ export class EmpleadosService {
 	  sortDirection: '',
 	};
 
-
-  constructor(private pipe: DecimalPipe) {
+  constructor(private pipe: DecimalPipe ) {
     this._search$
     .pipe(
       tap(() => this._loading$.next(true)),
@@ -75,40 +81,11 @@ export class EmpleadosService {
     });
 
   this._search$.next();
-
+  this._Empresa= new Empresa(PROGRAMADORES,LIDERES);
 
   }
 
-  getProgramadorByID(ID: string):any{
-    let emplados$List=PROGRAMADORES;
-    for (let empleado of emplados$List ){
-      if ( empleado as Programador){
-        if(empleado.CI== ID){
-          return empleado;
-        }
-      }
-    }
-  }
-  getProgramadorList():any{
-    let emplados$List=PROGRAMADORES;
-    let programadores: Programador[]=[];
-    for (let empleado of emplados$List){
-      if ( empleado as Programador){
-        programadores.push(empleado);
-      }
-    }
-    return programadores;
-  }
-  // getLiderList():any{
-  //   let emplados$List=PROGRAMADORES;
-  //   //let lideres: Lider[]=[];
-  //   for (let empleado of emplados$List){
-  //     if ( empleado as Lider){
-  //       lideres.push(empleado);
-  //     }
-  //   }
-  //   return lideres;
-  // }
+
 
   get _EmpleadosList(){
     return this.EmpleadosList.asObservable();
@@ -150,11 +127,16 @@ export class EmpleadosService {
 	set sortDirection(sortDirection: SortDirection) {
 		this._set({ sortDirection });
 	}
+  setEmpleado(name: string, edad:number, sexo:string, SB:number, CI: string,
+    lenguajes_programacion?:string[],categoria?:string, anioXP?:number, proyectDirig?:number){
+    this._Empresa.AddProgramador(name, edad, sexo, SB, CI,
+      lenguajes_programacion,categoria, anioXP, proyectDirig);
+  }
   private _search(): Observable<SearchResult> {
 		const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
 		// 1. sort
-		let empleados = sort(PROGRAMADORES, sortColumn, sortDirection);
+		let empleados = sort(this._Empresa._ListEmpleados, sortColumn, sortDirection);
 
 		// 2. filter
 		empleados = empleados.filter((empleado) => matches(empleado, searchTerm, this.pipe));

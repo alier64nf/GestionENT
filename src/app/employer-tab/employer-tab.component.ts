@@ -4,6 +4,7 @@ import { Component, QueryList, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Employer } from '../IEmployer/IEmployer';
+import { Programador } from '../IEmployer/IProgramador';
 import { EmpleadosService } from '../empleados.service';
 import { NgbdSortableHeader, SortEvent } from '../sortable.directive';
 import { FormsModule } from '@angular/forms';
@@ -18,10 +19,10 @@ import { NgbHighlight, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     NgbHighlight, NgbdSortableHeader,
     NgbPaginationModule,NgFor,NgIf],
 	templateUrl: './employer-tab.component.html',
-	providers: [EmpleadosService, DecimalPipe],
+	providers: [DecimalPipe,EmpleadosService],
 })
 export class EmployerTableComponent {
-	empleados: Observable<any[]>;
+	empleados: Observable<Programador[]>;
 	total$: Observable<number>;
 
 	@ViewChildren(NgbdSortableHeader)

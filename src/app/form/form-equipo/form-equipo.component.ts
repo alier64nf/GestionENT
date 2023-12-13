@@ -1,7 +1,7 @@
 import { Programador } from '../../IEmployer/IProgramador';
 import { Component, inject, Input, Output } from '@angular/core';
 import { EmpleadosService } from '../../empleados.service';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule, NgFor, NgForOf } from '@angular/common';
 
 import {
     NgbModal,
@@ -79,7 +79,7 @@ activeModal2 = inject(NgbActiveModal);
     NgbAccordionBody,
     NgbAccordionCollapse,
     NgbCollapseModule,
-    NgbCollapse,NgFor],
+    NgbCollapse,NgFor, NgForOf],
   templateUrl: './form-equipo.component.html',
 
 })
@@ -87,8 +87,8 @@ export class FormEquipoContent {
   activeModal = inject(NgbActiveModal);
   isCollapsed = true;
   empleados= inject(EmpleadosService);
-  Programadores=this.empleados.getProgramadorList();
-  lideres=this.empleados.getProgramadorList();
+  Programadores=this.empleados._EmpleadosList;
+  // lideres=this.empleados.getProgramadorList();
   Progs_Selects?: Programador[];
 
   private modalService2 = inject(NgbModal);

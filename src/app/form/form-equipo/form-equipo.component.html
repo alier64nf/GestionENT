@@ -17,15 +17,15 @@
         [attr.aria-expanded]="!isCollapsed"
         aria-controls="collapseExample"
       >
-      Programadores Selecionados
+      Programadores Seleccionados
       </button>
 
     <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
       <div class="card">
         <div class="card-body">
           <ul>
-            <li **ngFor="let programador of Progs_Selects">
-              <span>{{programador}}</span>
+            <li *ngfor="let programador of Progs_Selects">
+              <span>{{programador.name}}</span>
             </li>
           </ul>
         </div>
@@ -36,11 +36,13 @@
   <div>
     <select  class="form-select" aria-label="Default select example">
       <option selected>Selecciona un Lider</option>
-      <option **ngFor="let lider of lideres">
+      @for(lider of Programadores | async;track 1){
+      <option>
        <span> {{lider.name}} </span><br>
-       <span> <b>Experiencia:</b> {{lider.anioxp}} </span>
-       <span> <b>Proyectos:</b> {{lider.proyectDirigidos}}</span>
+       <!-- <span> <b>Experiencia:</b> {{lider.anioxp}} </span>
+       <span> <b>Proyectos:</b> {{lider.proyectDirigidos}}</span> -->
       </option>
+    }
     </select>
   </div>
   <div class="modal-footer">

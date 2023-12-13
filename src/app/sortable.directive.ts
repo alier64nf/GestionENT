@@ -2,7 +2,7 @@ import { Directive, EventEmitter, Input, Output } from '@angular/core';
 import { Employer } from './IEmployer/IEmployer';
 import { Programador } from './IEmployer/IProgramador';
 
-export type SortColumn = keyof Programador | '';
+export type SortColumn = keyof Employer | '';
 export type SortDirection = 'asc' | 'desc' | '';
 const rotate: { [key: string]: SortDirection } = { asc: 'desc', desc: '', '': 'asc' };
 

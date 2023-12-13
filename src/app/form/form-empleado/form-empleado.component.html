@@ -7,14 +7,14 @@
   <form class="row g-3 needs-validation" novalidate>
     <div class="col-md-4">
       <label for="validationCustom01" class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+      <input type="text" class="form-control" id="validationCustom01" value="Mark" required #name>
       <div class="valid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4">
-      <label for="validationCustom02" class="form-label">Apellidos</label>
-      <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+      <label for="validationCustom02" class="form-label">Apellidos </label>
+      <input type="text" class="form-control" id="validationCustom02" value="Otto" required #lastname>
       <div class="valid-feedback">
         Looks good!
       </div>
@@ -22,7 +22,7 @@
     <div class="col-md-4">
       <label for="validationCustomUsername" class="form-label">Edad</label>
       <div class="input-group has-validation">
-        <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+        <input type="number" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required #edad>
         <div class="invalid-feedback">
           Please choose a username.
         </div>
@@ -30,37 +30,71 @@
     </div>
     <div class="col-md-6">
       <label for="validationCustom03" class="form-label">Sexo</label>
-      <input type="text" class="form-control" id="validationCustom03" required>
+      <input type="text" class="form-control" id="validationCustom03" required #sexo>
       <div class="invalid-feedback">
         Please provide a valid city.
       </div>
     </div>
     <div class="col-md-3">
       <label for="validationCustom04" class="form-label">Salario</label>
-        <input type="number" class="form-control" id="validationCustom03" required>
+        <input type="number" class="form-control" id="validationCustom03" required #Salario>
         <div class="invalid-feedback">
           Monto mayor a cero
         </div>
     </div>
     <div class="col-md-3">
       <label for="validationCustom05" class="form-label">Identifiación</label>
-      <input type="text" class="form-control" id="validationCustom05" required>
+      <input type="text" class="form-control" id="validationCustom05" required #ci>
       <div class="invalid-feedback">
         Provee un CI Válido
       </div>
     </div>
-    <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-        <label class="form-check-label" for="invalidCheck">
-          Agree to terms and conditions
-        </label>
-        <div class="invalid-feedback">
-          You must agree before submitting.
+      <div class="col-md-9">
+        <div class="">
+          <div class="col">
+            <div ngbDropdown class="d-inline-block">
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                Lenguajes Que Domina
+              </button>
+                <select ngbDropdownMenu aria-labelledby="dropdownBasic1" class="form-select form-label" multiple aria-label="Multiple select example">
+                  <option  selected name='select' *ngFor="let item of lenguajesProgram" >
+                    <img src={{item.icon}}/> {{item.name}}
+                  </option>
+                </select>
+                &nbsp;
+                <button type="submit" class="btn btn-outline-primary" (click)="Seleccion()">Agregar</button>
+
+            </div>
+          </div>
+
         </div>
+        </div>
+    <div class="col-md-6">
+      <label for="validationCustom05" class="form-label">Categoria</label>
+      <input type="text" class="form-control" id="validationCustom05" required #catg>
+      <div class="invalid-feedback">
+        Provee un Texto Válido
       </div>
     </div>
-  </form></div>
+    <div class="col-md-3">
+      <label for="validationCustom05" class="form-label">Años de Experiencia</label>
+      <input type="number" class="form-control" id="validationCustom05" required #xp>
+      <div class="invalid-feedback">
+        Provee un numero Válido
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom05" class="form-label">Proyectos Dirigidos</label>
+      <input type="number" class="form-control" id="validationCustom05" required #pyd>
+      <div class="invalid-feedback">
+        Provee un numero Válido
+      </div>
+      </div>
+  </form>
+</div>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-outline-dark" aria-label="Close" (click)="activeModal.close('Close click')">Aceptar</button>
+  <button type="submit" class="btn btn-outline-dark" aria-label="Close"
+  (click)="Submit(name.value,lastname.value, edad.valueAsNumber , sexo.value, Salario.valueAsNumber , ci.value,
+  lgp,catg.value,
+   xp.valueAsNumber , pyd.valueAsNumber)">Aceptar</button>
 </div>

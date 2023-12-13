@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe, NgFor, NgIf } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterOutlet,RouterLink,RouterLinkActive, RouterModule } from '@angular/router';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormEmpleadoComponent } from './form/form-empleado/form-empleado.component';
 import { FormEquipoComponent } from './form/form-equipo/form-equipo.component';
 import { FormProyectComponent } from './form/form-proyect/form-proyect.component';
+import { Empresa } from './Class/Empresa';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { FormProyectComponent } from './form/form-proyect/form-proyect.component
     RouterLinkActive,
     RouterModule,
     NgbModalModule,
+    NgFor,NgIf, DecimalPipe,
 
 
    ],
@@ -40,7 +42,7 @@ import { FormProyectComponent } from './form/form-proyect/form-proyect.component
   ],
 
   providers:[
-    EmpleadosService,
+    NgFor,NgIf, DecimalPipe,EmpleadosService,
   ],
   bootstrap:[]
 })
